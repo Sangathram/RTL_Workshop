@@ -86,4 +86,3 @@ assign y = sel ? i1 : i0;
 
 endmodule
 ```
- modify this and give me complete with neat
