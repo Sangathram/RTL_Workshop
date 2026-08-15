@@ -46,7 +46,7 @@ Icarus Verilog is a free and open-source Verilog compiler and simulator. It allo
 Basic Simulation Flow
 <img width="1854" height="956" alt="image" src="https://github.com/user-attachments/assets/ef4b5969-0972-4d7a-a550-5c816ccc05fa" />
 
-#3. Lab: 2-to-1 Multiplexer Simulation
+# 3 Lab: 2-to-1 Multiplexer Simulation
 Installing the Required Tools
 Install Icarus Verilog:
 
@@ -75,7 +75,7 @@ The generated waveform verifies that the 2-to-1 multiplexer functions correctly.
 | 0 | i0 |
 | 1 | i1 |
 
-## Verilog Design
+# 4 Verilog Design
 
 A 2-to-1 multiplexer was designed using Verilog HDL.
 
@@ -97,15 +97,13 @@ assign y = sel ? i1 : i0;
 
 endmodule
 ```
-5. Introduction to Yosys and Gate Libraries
-Theory
+# 5. Introduction to Yosys and Gate Libraries Theory
 Yosys is an open-source synthesis tool that converts Verilog RTL descriptions into gate-level netlists. It analyzes and optimizes the design before mapping the logic to cells from a selected technology library.
 
 A Liberty (.lib) file describes the characteristics of standard cells used by the technology. It contains information such as cell functionality, timing, area, power, and drive strength. Yosys uses this information during technology mapping to select suitable standard cells.
 
 In this experiment, the good_mux design was synthesized using the Sky130 standard cell library. The RTL was processed, optimized, technology-mapped, and represented as a gate-level netlist.
-
-Synthesis Lab with Yosys
+# Synthesis Lab with Yosys
 Step 1: Start Yosys
 yosys
 Step 2: Load the Liberty Library
@@ -118,20 +116,11 @@ Step 5: Perform Technology Mapping
 abc -liberty /home/vsduser/VLSI/sky130RTLDesignAndSynthesisWorkshop/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 Step 6: Display the Synthesized Design
 show
-image
-Result
+<img width="1117" height="629" alt="image" src="https://github.com/user-attachments/assets/e7bf3450-d394-4b4e-bd06-b4a1d91f3a1d" />
+# 6 Result
 The good_mux Verilog design was synthesized successfully.
 The Sky130 Liberty library was loaded for technology mapping.
 The RTL logic was optimized during synthesis.
 Technology mapping was performed using the selected Sky130 standard cells.
 The resulting gate-level representation was generated and viewed using Yosys.
-6. Summary
-Learned the fundamentals of Verilog HDL.
-Understood the roles of a simulator, design module, and testbench.
-Simulated a 2-to-1 multiplexer using Icarus Verilog.
-Verified the output using GTKWave.
-Analyzed the Verilog code and understood the multiplexer operation.
-Learned the basics of RTL synthesis using Yosys.
-Understood the purpose of Liberty (.lib) files and standard-cell libraries.
-Performed technology mapping using the Sky130 standard cell library.
-Gained an introduction to RTL synthesis using Yosys.
+
