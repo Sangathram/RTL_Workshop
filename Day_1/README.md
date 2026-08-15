@@ -30,12 +30,15 @@ A simulator is a software tool used to execute Verilog code and verify the behav
 ## Design
 
 The design is the Verilog module that represents the required digital circuit. It contains the inputs, outputs, and logic required for the circuit operation.
+<img width="534" height="264" alt="image" src="https://github.com/user-attachments/assets/d9f1778c-bcbb-45b6-b045-c9ff882f0dc8" />
+
 
 ## Testbench
 
 A testbench is a separate Verilog module used to provide different input combinations to the design and observe the outputs.
 
----
+---<img width="1122" height="608" alt="image" src="https://github.com/user-attachments/assets/0f1fc68b-9038-4cd0-9730-e936dd03f71b" />
+
 
 # 2. Icarus Verilog
 
@@ -64,6 +67,14 @@ The output is selected according to the select signal.
 
 ## Verilog Design
 
+A 2-to-1 multiplexer was designed using Verilog HDL.
+
+- `i0` and `i1` are the two input signals.
+- `sel` is the select signal.
+- `y` is the output.
+- When `sel = 0`, output `y` follows `i0`.
+- When `sel = 1`, output `y` follows `i1`.
+
 ```verilog
 module good_mux(
     input i0,
@@ -75,3 +86,4 @@ module good_mux(
 assign y = sel ? i1 : i0;
 
 endmodule
+```
