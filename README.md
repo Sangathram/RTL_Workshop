@@ -1,361 +1,137 @@
-# RTL Design & Synthesis Workshop
+# Physical Design (PD) — VLSI / OpenLANE Workshop
 
-A structured collection of my work, experiments, simulations, synthesis results, and learning outcomes from the **RTL Design & Synthesis Workshop**.
+## Overview
 
-This repository documents the complete learning path across **Modules 1–5**, starting from RTL design and simulation and progressing through synthesis, optimization, Gate-Level Simulation (GLS), coding styles, and synthesis optimization.
+This repository contains the practical work, figures, and notes completed across all **five modules** of the Physical Design workshop. The workshop progresses from open-source EDA and the Sky130 PDK through synthesis, floorplanning, standard-cell design and characterization, timing analysis, clock-tree synthesis, power distribution, routing, and physical verification.
 
----
+The repository follows the structure and terminology of the supplied **README (2)** as the reference for the complete workshop, while the earlier README was used to preserve and update the Module 1 and Module 2 organization. The complete supplied figure sets are included in the corresponding `Images` folders.
 
-## 📚 Workshop Modules
+## Modules Covered
 
-| Module | Topic | Main Focus |
-|---|---|---|
-| **Module 1** | Introduction to RTL Design & Simulation | RTL coding, testbench, Icarus Verilog, VCD and GTKWave |
-| **Module 2** | Sequential Logic & RTL Synthesis | Yosys, `.lib`, sequential circuits, synthesis and standard-cell mapping |
-| **Module 3** | Combinational & Sequential Optimization | RTL optimization techniques for combinational and sequential logic |
-| **Module 4** | GLS, Blocking vs Non-Blocking & Synthesis Simulation | Gate-Level Simulation, coding styles and comparison of RTL vs synthesized behavior |
-| **Module 5** | Optimization in Synthesis | Synthesis-driven optimization and understanding how RTL coding affects hardware |
+### Module 1 — Inception of Open-Source EDA, OpenLANE and Sky130 PDK
 
----
+Covers how to talk to computers, SoC design, OpenLANE, Sky130 PDK, open-source EDA tools, technology/tool-specific concepts, RTL-to-GDS flow, synthesis, netlist generation, chip-area information, and clock parameters.
 
-# 📁 Repository Structure
+[Open Module 1 →](./Module%201/README.md)
+
+### Module 2 — Good Floorplan vs Bad Floorplan and Introduction to Library Cells
+
+Covers chip floorplanning, utilization factor, aspect ratio, cell design and characterization flows, timing-characterization parameters, Magic floorplan/placement views, standard-cell placement, Sky130 library information, metal layers, and synthesis-netlist inspection.
+
+[Open Module 2 →](./Module%202/README.md)
+
+### Module 3 — Design Library Cell Using Magic Layout and ngspice Characterization
+
+Covers CMOS inverter simulation, threshold/VTC analysis, SPICE decks and waveforms, CMOS fabrication steps, Sky130 layers, standard-cell layout, pin configuration, extraction, connectivity, and verification.
+
+[Open Module 3 →](./Module%203/README.md)
+
+### Module 4 — Pre-Layout Timing Analysis and Importance of Good Clock Tree
+
+Covers timing modelling, grid/track conversion, cell characterization, SDC, clock creation, OpenSTA pre-layout analysis, setup analysis, synthesis optimization, clock-tree synthesis, buffering, crosstalk, shielding, leakage power, and physical timing views.
+
+[Open Module 4 →](./Module%204/README.md)
+
+### Module 5 — Final Steps for RTL2GDS Using TritonRoute and OpenSTA
+
+Covers maze routing, DRC, power distribution, straps, global/detail routing, TritonRoute, route guides, connectivity, routing topology, macro/RAM views, routing statistics, and post-route verification.
+
+[Open Module 5 →](./Module%205/README.md)
+
+## Overall Workshop Flow
 
 ```text
-RTL-Design-Workshop/
-│
+Open-Source EDA / Sky130 PDK
+          ↓
+     OpenLANE / RTL2GDS
+          ↓
+        Synthesis
+          ↓
+      Floorplanning
+          ↓
+Library Binding & Placement
+          ↓
+Standard-Cell Design / Characterization
+          ↓
+   Timing Modelling / OpenSTA
+          ↓
+Clock Tree Synthesis / TritonCTS
+          ↓
+ Real-Clock Setup & Hold Analysis
+          ↓
+   Power Distribution Network
+          ↓
+ Global Routing / Detailed Routing
+          ↓
+       TritonRoute
+          ↓
+       DRC / Verification
+          ↓
+      Post-Route Files
+```
+
+## Repository Structure
+
+```text
+Physical_Design_PD/
 ├── README.md
-│
 ├── Module 1/
 │   ├── README.md
-│   ├── images/
-│   └── ...
-│
+│   └── Images/
+│       └── Module 1 figures
 ├── Module 2/
 │   ├── README.md
-│   ├── images/
-│   └── ...
-│
+│   └── Images/
+│       └── Module 2 figures
 ├── Module 3/
 │   ├── README.md
-│   ├── images/
-│   └── ...
-│
+│   └── Images/
+│       └── Module 3 figures
 ├── Module 4/
 │   ├── README.md
-│   ├── images/
-│   └── ...
-│
+│   └── Images/
+│       └── Module 4 figures
 └── Module 5/
     ├── README.md
-    ├── images/
-    └── ...
+    └── Images/
+        └── Module 5 figures
 ```
 
-Each module has its own `README.md` containing the concepts, experiments, observations, results, and supporting figures.
-
----
-
-# 🔹 Module 1 — Introduction to RTL Design & Simulation
-
-Module 1 establishes the basic RTL design and verification flow.
-
-### Topics Covered
-
-- RTL design using Verilog
-- 2:1 multiplexer (`good_mux`) design
-- Testbench creation
-- Icarus Verilog simulation
-- VCD generation
-- GTKWave waveform analysis
-- Basic RTL-to-hardware understanding
-- Introduction to synthesis representation
-
-### Design Flow
-
-```text
-RTL Design
-    ↓
-Testbench
-    ↓
-Icarus Verilog
-    ↓
-VCD Generation
-    ↓
-GTKWave
-    ↓
-Waveform Analysis
-```
-
-### Practical Work
-
-The module documents the complete `good_mux` experiment, including the RTL, testbench, simulation flow, waveform and synthesized representation.
-
-👉 **[Open Module 1 README](Module%201/README.md)**
-
----
-
-# 🔹 Module 2 — Sequential Logic & RTL Synthesis
-
-Module 2 moves from basic RTL simulation toward synthesis and sequential hardware structures.
-
-### Topics Covered
-
-- RTL-to-netlist synthesis
-- Yosys synthesis flow
-- Standard-cell `.lib` files
-- Combinational and sequential logic synthesis
-- D flip-flop structures
-- Asynchronous set and reset
-- Synthesis-generated cell structures
-- Simulation waveforms
-- Hierarchical RTL design
-- Multiplier synthesis
-
-### Synthesis Flow
-
-```text
-RTL Design
-     +
-Standard Cell Library (.lib)
-     ↓
-   Yosys
-     ↓
-Synthesized Netlist
-     ↓
-Standard-Cell Representation
-```
-
-### Practical Work
-
-The module includes synthesis illustrations, standard-cell library concepts, flip-flop synthesis results, waveform observations, hierarchical design examples and multiplier synthesis.
-
-👉 **[Open Module 2 README](Module%202/README.md)**
-
----
-
-# 🔹 Module 3 — Combinational & Sequential Optimization
-
-Module 3 focuses on understanding how RTL coding choices influence the resulting hardware and how combinational and sequential logic can be optimized.
-
-### Topics Covered
-
-- Combinational logic optimization
-- Sequential logic optimization
-- RTL-level optimization
-- Removing redundant logic
-- Simplifying logic structures
-- Understanding hardware inferred from RTL
-- Comparing different RTL implementations
-- Observing the effect of optimization on synthesized hardware
-
-### Optimization Perspective
-
-```text
-RTL Description
-      ↓
-Logic Inference
-      ↓
-Optimization
-      ↓
-Synthesized Hardware
-```
-
-The module documents the optimization exercises and supporting synthesis/visual results.
-
-👉 **[Open Module 3 README](Module%203/README.md)**
-
----
-
-# 🔹 Module 4 — GLS, Blocking vs Non-Blocking & Synthesis Simulation
-
-Module 4 focuses on the relationship between RTL simulation and synthesized gate-level behavior.
-
-### Topics Covered
-
-- Gate-Level Simulation (GLS)
-- RTL simulation vs Gate-Level Simulation
-- Synthesis simulation
-- Blocking assignments
-- Non-blocking assignments
-- Sequential coding styles
-- Simulation behavior of different coding styles
-- Understanding synthesized netlists
-- Verifying synthesized designs using simulation
-
-### Simulation Flow
-
-```text
-RTL
- ↓
-RTL Simulation
- ↓
-Synthesis
- ↓
-Gate-Level Netlist
- ↓
-Gate-Level Simulation
- ↓
-Waveform Comparison
-```
-
-### Key Learning
-
-This module helps demonstrate why coding style matters, particularly when describing sequential logic using blocking (`=`) and non-blocking (`<=`) assignments.
-
-👉 **[Open Module 4 README](Module%204/README.md)**
-
----
-
-# 🔹 Module 5 — Optimization in Synthesis
-
-Module 5 focuses on optimization performed during the synthesis process and on understanding how synthesis transforms RTL into efficient hardware.
-
-### Topics Covered
-
-- Synthesis optimization
-- RTL-to-netlist transformation
-- Logic simplification
-- Constant propagation
-- Removal of redundant logic
-- Hardware-efficient RTL coding
-- Optimization of combinational structures
-- Optimization of sequential structures
-- Understanding synthesis results
-- Comparing RTL intent with synthesized implementation
-
-### Synthesis Optimization Flow
-
-```text
-RTL
- ↓
-Elaboration
- ↓
-Logic Optimization
- ↓
-Technology Mapping
- ↓
-Optimized Netlist
-```
-
-The module documents the synthesis experiments and observations used to understand how optimization affects the final hardware implementation.
-
-👉 **[Open Module 5 README](Module%205/README.md)**
-
----
-
-# 🛠️ Tools Used
-
-The workshop work is based around commonly used RTL design and synthesis tools, including:
-
-- **Verilog HDL** — RTL design
-- **Icarus Verilog** — RTL simulation
-- **GTKWave** — waveform visualization
-- **Yosys** — RTL synthesis
-- **Standard-cell `.lib` files** — technology/library information
-- **Gate-level netlists** — synthesis and GLS analysis
-
----
-
-# 🔄 Complete Workshop Flow
-
-The five modules together build a progressive RTL-to-synthesis learning flow:
-
-```text
-                  RTL Design
-                      │
-                      ▼
-             Module 1: RTL
-              & Simulation
-                      │
-                      ▼
-          Module 2: Synthesis
-         & Sequential Hardware
-                      │
-                      ▼
-       Module 3: RTL Optimization
-        Combinational / Sequential
-                      │
-                      ▼
-       Module 4: GLS & Coding Styles
-        Blocking / Non-Blocking /
-             Synthesis Simulation
-                      │
-                      ▼
-       Module 5: Synthesis Optimization
-                      │
-                      ▼
-              Optimized Netlist
-```
-
----
-
-# 📊 Learning Progression
-
-| Stage | What I Learned |
-|---|---|
-| **1. RTL Design** | How to describe digital hardware using Verilog |
-| **2. Simulation** | How to verify RTL functionality using testbenches and waveforms |
-| **3. Synthesis** | How RTL is converted into a hardware netlist |
-| **4. Sequential Logic** | How flip-flops and control signals are represented in hardware |
-| **5. RTL Optimization** | How coding and logic structure affect synthesized hardware |
-| **6. GLS** | How synthesized gate-level designs can be simulated and verified |
-| **7. Synthesis Optimization** | How synthesis tools optimize and map RTL into hardware |
-
----
-
-# 🎯 Overall Objectives
-
-Through these five modules, the workshop develops an understanding of the complete RTL design and synthesis process:
-
-- Design digital logic using Verilog RTL.
-- Build and use testbenches.
-- Simulate RTL designs.
-- Analyze waveforms using GTKWave.
-- Understand standard-cell libraries.
-- Synthesize RTL using Yosys.
-- Study combinational and sequential hardware structures.
-- Optimize RTL implementations.
-- Understand blocking and non-blocking assignments.
-- Perform and analyze Gate-Level Simulation.
-- Understand synthesis-driven optimization.
-- Relate RTL code to the final synthesized hardware.
-
----
-
-# 📌 Module Documentation
-
-For detailed experiments, figures, synthesis results, waveforms and observations, refer to the individual module README files:
-
-- **[Module 1 — RTL Design & Simulation](Module%201/README.md)**
-- **[Module 2 — Sequential Logic & RTL Synthesis](Module%202/README.md)**
-- **[Module 3 — Combinational & Sequential Optimization](Module%203/README.md)**
-- **[Module 4 — GLS, Blocking vs Non-Blocking & Synthesis Simulation](Module%204/README.md)**
-- **[Module 5 — Optimization in Synthesis](Module%205/README.md)**
-
----
-
-# 📈 Final Outcome
-
-The workshop provides a step-by-step understanding of how a digital design progresses from:
-
-```text
-Verilog RTL
-    ↓
-Testbench & Simulation
-    ↓
-Waveform Verification
-    ↓
-Synthesis
-    ↓
-Standard-Cell Mapping
-    ↓
-RTL Optimization
-    ↓
-Gate-Level Simulation
-    ↓
-Synthesis Optimization
-    ↓
-Optimized Hardware Netlist
-```
-
-This repository serves as a structured record of the **RTL Design & Synthesis Workshop — Modules 1 through 5**, including the concepts studied, practical experiments, simulation results, synthesis outputs and supporting documentation.
+## Tools and Technologies
+
+- **OpenLANE / OpenLane** — RTL-to-GDS implementation flow
+- **Sky130 PDK** — open-source process design kit
+- **Magic** — layout viewing, extraction, and physical verification
+- **ngspice** — SPICE simulation and characterization
+- **OpenSTA** — static timing analysis
+- **TritonCTS** — clock-tree synthesis
+- **TritonRoute** — routing
+- **RePlAce** — placement
+- **Linux / Ubuntu** — workshop environment
+- **Standard-cell libraries** — library and physical-design views
+
+## Overall Learning Outcomes
+
+After completing the five modules, the practical work provides exposure to:
+
+1. Open-source EDA and the role of a PDK in ASIC design.
+2. OpenLANE RTL-to-GDS flow and its major stages.
+3. Synthesis and gate-level netlist generation.
+4. Floorplanning, utilization, aspect ratio, power and pin planning.
+5. Standard-cell libraries, placement and physical layout views.
+6. CMOS inverter SPICE simulation and characterization.
+7. CMOS fabrication concepts and Sky130 layers.
+8. Magic layout, extraction, connectivity and DRC.
+9. Timing libraries, setup/hold analysis, jitter and uncertainty.
+10. Clock-tree synthesis, buffering, crosstalk and shielding.
+11. Power distribution, global/detail routing and TritonRoute.
+12. Route-guide and connectivity handling.
+13. Final physical verification and post-route outputs.
+
+## Practical Evidence
+
+Every module now contains an `Images` directory with the actual image files supplied in the uploaded Module 1–2 and Module 3–5 archives. Each module README links directly to its figures.
+
+## Reference
+
+The overall organization and five-module coverage are based on the supplied README (2), while the previous README (1) was used as the reference for the existing Module 1 and Module 2 work. The supplied figure archives were used directly for the image folders.
